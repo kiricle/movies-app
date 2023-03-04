@@ -1,0 +1,12 @@
+.filled {
+    fill: var(--primary);
+}
+
+.rating {
+    display: flex;
+    gap: 5px;
+}
+
+.pointer {
+    cursor: pointer;
+}
