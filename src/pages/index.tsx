@@ -1,4 +1,4 @@
-import { Htag, Button, Paragraph } from '@/components';
+import { Htag, Button, Paragraph, Tag } from '@/components';
 import { Noto_Sans } from 'next/font/google';
 
 const notoSans = Noto_Sans({
@@ -26,6 +26,10 @@ export default function Home(): JSX.Element {
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Molestias, iusto!
             </Paragraph>
+            <Tag size='s' color='primary'>Small</Tag>
+            <Tag size='m' color='red'>red</Tag>
+            <Tag size='s' color='ghost'>ghost</Tag>
+            <Tag size='s' color='green'>green</Tag>
         </>
     );
 }
