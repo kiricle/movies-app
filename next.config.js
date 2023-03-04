@@ -1,6 +1,22 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-}
+    reactStrictMode: true,
+    webpack(config) {
+        config.module.rules.push({
+            test: /\.svg$/i,
+            issuer: /\.[jt]sx?$/,
+            use: ['@svgr/core'],
+        });
 
-module.exports = nextConfig
+        return config;
+    },
+    experimental: {
+        fontLoaders: [
+            {
+                loader: '@next/font/google',
+            },
+        ],
+    },
+};
+
+module.exports = nextConfig;
