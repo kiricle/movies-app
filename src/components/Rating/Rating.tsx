@@ -28,13 +28,14 @@ export const Rating = ({
                     })}
                     onMouseEnter={() => changeDisplay(i + 1)}
                     onMouseLeave={() => changeDisplay(rating)}
-                    tabindex={isEditable ? 0 : -1}
+                    tabIndex={isEditable ? 0 : -1}
                     onKeyDown={(e: KeyboardEvent<SVGElement>) =>
                         isEditable &&
                         setRating &&
                         (e.code === 'Enter' || e.code === 'Space') &&
-                        changeDisplay(i + 1)
+                        changeAndSetRating(i)
                     }
+                    onClick={() => changeAndSetRating(i)}
                 />
             );
         });
@@ -46,7 +47,14 @@ export const Rating = ({
             return;
         }
         constructRating(i);
-        setRating(i);
+    };
+
+    const changeAndSetRating = (i: number) => {
+        if (!isEditable || !setRating) {
+            return;
+        }
+        constructRating(i);
+        setRating(i+1);
     };
 
     return (

@@ -1,4 +1,5 @@
 import { Button, Htag, Paragraph, Rating, Tag } from '@/components';
+import { Layout } from '@/layout/Layout';
 import { Noto_Sans } from 'next/font/google';
 import { useState } from 'react';
 
@@ -12,7 +13,7 @@ export default function Home(): JSX.Element {
     const [rating, setRating] = useState(2);
 
     return (
-        <>
+        <Layout>
             <Htag tag="h1">{counter}</Htag>
             <Button
                 appearance="primary"
@@ -60,6 +61,6 @@ export default function Home(): JSX.Element {
                 isEditable={true}
                 setRating={setRating}
             />
-        </>
+        </Layout>
     );
 }
