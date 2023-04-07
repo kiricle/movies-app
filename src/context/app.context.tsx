@@ -1,5 +1,5 @@
 import { Genre, GenreList } from '@/interfaces/menu.interface';
-import { createContext, ReactNode, useState } from 'react';
+import { createContext, PropsWithChildren, ReactNode, useState } from 'react';
 
 export interface IAppContext {
     menu: GenreList;
@@ -11,7 +11,7 @@ export const AppContext = createContext<IAppContext>({ menu: { genres: [] } });
 export const AppContextProvider = ({
     menu,
     children,
-}: IAppContext & { children: ReactNode }): JSX.Element => {
+}: PropsWithChildren<IAppContext>): JSX.Element => {
     const [menuState, setMenuState] = useState<GenreList>(menu);
 
     const setMenu = (newMenu: GenreList) => {
