@@ -1,5 +1,8 @@
 import { Button, Htag, Paragraph, Rating, Tag } from '@/components';
+import { Genre, GenreList } from '@/interfaces/menu.interface';
 import { withLayout } from '@/layout/Layout';
+import axios from 'axios';
+import { GetStaticProps } from 'next';
 import { Noto_Sans } from 'next/font/google';
 import { useState } from 'react';
 
@@ -8,7 +11,7 @@ const notoSans = Noto_Sans({
     subsets: ['latin'],
 });
 
-function Home(): JSX.Element {
+function Home({ menu }: HomeProps): JSX.Element {
     const [counter, setCounter] = useState(0);
     const [rating, setRating] = useState(2);
 
@@ -66,3 +69,24 @@ function Home(): JSX.Element {
 }
 
 export default withLayout(Home);
+
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+    const url = new URL(process.env.NEXT_PUBLIC_DOMAIN + '/genre/movie/list');
+
+    const { data: menu } = await axios.get<GenreList>(url.toString(), {
+        params: {
+            api_key: process.env.NEXT_PUBLIC_API_KEY,
+            language: 'ru-RU',
+        },
+    });
+
+    return {
+        props: {
+            menu,
+        },
+    };
+};
+
+interface HomeProps extends Record<string, unknown> {
+    menu: GenreList;
+}
