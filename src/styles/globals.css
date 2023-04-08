@@ -10,6 +10,8 @@
   --background-color: #F5F6F8;
   --gray-light: #EBEBEB;
   --gray: #BDBDBD;
+  --sidebar-color: #242527;
+  --sidebar-color-hover: #3A3B3D;
 }
 
 * {

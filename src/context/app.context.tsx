@@ -1,5 +1,5 @@
-import { Genre, GenreList } from '@/interfaces/menu.interface';
-import { createContext, PropsWithChildren, ReactNode, useState } from 'react';
+import { GenreList } from '@/interfaces/menu.interface';
+import { createContext, PropsWithChildren, useState } from 'react';
 
 export interface IAppContext {
     menu: GenreList;

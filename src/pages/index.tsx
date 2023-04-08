@@ -1,5 +1,5 @@
 import { Button, Htag, Paragraph, Rating, Tag } from '@/components';
-import { Genre, GenreList } from '@/interfaces/menu.interface';
+import { GenreList } from '@/interfaces/menu.interface';
 import { withLayout } from '@/layout/Layout';
 import axios from 'axios';
 import { GetStaticProps } from 'next';
@@ -76,7 +76,6 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
     const { data: menu } = await axios.get<GenreList>(url.toString(), {
         params: {
             api_key: process.env.NEXT_PUBLIC_API_KEY,
-            language: 'ru-RU',
         },
     });
 

@@ -1,17 +1,24 @@
 import { Htag } from '@/components';
+import { AppContext } from '@/context/app.context';
 import { Genre, GenreList } from '@/interfaces/menu.interface';
 import { withLayout } from '@/layout/Layout';
 import axios from 'axios';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 import { Noto_Sans } from 'next/font/google';
 import { ParsedUrlQuery } from 'querystring';
+import { useContext } from 'react';
 
 const notoSans = Noto_Sans({
     weight: ['300', '400', '500', '700'],
     subsets: ['latin'],
 });
 
-function Movie({ genre }: GenresProps): JSX.Element {
+function Movie({ menu, genre }: GenresProps): JSX.Element {
+    const { menu: currentMenu, setMenu } = useContext(AppContext);
+
+    if (!currentMenu && menu && setMenu) {
+        setMenu(menu);
+    }
 
     return (
         <>
@@ -53,7 +60,7 @@ export const getStaticProps: GetStaticProps<GenresProps> = async ({
         },
     });
 
-    const [genre] = await menu.genres.filter(
+    const [genre] = menu.genres.filter(
         (g) => g.name.toLowerCase() === params.genre
     );
 

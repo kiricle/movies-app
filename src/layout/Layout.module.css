@@ -1,6 +1,6 @@
 .wrapper {
     display: grid;
-    grid-template-columns: auto 230px minmax(320px, 1200px) auto;
+    grid-template-columns: auto 300px minmax(320px, 1200px) auto;
     grid-template-rows: auto 1fr auto;
     grid-template-areas:
         ". header header ."
@@ -15,11 +15,20 @@
 }
 
 .sidebar {
+    margin-left: 10px;
     grid-area: sidebar;
+    height: fit-content;
+    background-color: var(--sidebar-color);
+    overflow: hidden;
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 10px;
 }
 
 .main {
     grid-area: main;
+    padding: 10px 10px 0;
+    margin-left: 10px;
 }
 
 .footer {
