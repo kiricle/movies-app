@@ -1,4 +1,5 @@
-import { Htag } from '@/components';
+import { Movie } from '@/components/Movie/Movie';
+import { MovieProps } from '@/components/Movie/Movie.props';
 import { AppContext } from '@/context/app.context';
 import { Genre, GenreList } from '@/interfaces/menu.interface';
 import { withLayout } from '@/layout/Layout';
@@ -13,7 +14,7 @@ const notoSans = Noto_Sans({
     subsets: ['latin'],
 });
 
-function Movie({ menu, genre }: GenresProps): JSX.Element {
+function Movies({ menu, genre, movies }: GenresProps): JSX.Element {
     const { menu: currentMenu, setMenu } = useContext(AppContext);
 
     if (!currentMenu && menu && setMenu) {
@@ -22,12 +23,22 @@ function Movie({ menu, genre }: GenresProps): JSX.Element {
 
     return (
         <>
-            <Htag tag="h1">{genre && genre.name}</Htag>
+            {movies && movies.map((m) => (
+                <Movie
+                    key={m.id}
+                    id={m.id}
+                    title={m.title}
+                    genre_ids={m.genre_ids}
+                    poster_path={m.poster_path}
+                    vote_average={m.vote_average}
+                    overview={m.overview}
+                />
+            ))}
         </>
     );
 }
 
-export default withLayout(Movie);
+export default withLayout(Movies);
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const url = new URL(process.env.NEXT_PUBLIC_DOMAIN + '/genre/movie/list');
@@ -64,20 +75,41 @@ export const getStaticProps: GetStaticProps<GenresProps> = async ({
         (g) => g.name.toLowerCase() === params.genre
     );
 
+    const moviesURL = new URL(
+        process.env.NEXT_PUBLIC_DOMAIN + '/discover/movie'
+    );
+
+    const { data: moviesFetch } = await axios.get<MoviesFetch>(
+        moviesURL.toString(),
+        {
+            params: {
+                api_key: process.env.NEXT_PUBLIC_API_KEY,
+                with_genres: genre.id,
+            },
+        }
+    );
+
     if (genre === undefined)
         return {
             notFound: true,
         };
-
+    
+    
     return {
         props: {
             menu,
             genre,
+            movies: moviesFetch.results,
         },
     };
 };
 
+interface MoviesFetch {
+    results: MovieProps[];
+}
+
 interface GenresProps extends Record<string, unknown> {
     menu: GenreList;
     genre: Genre;
+    movies: MovieProps[];
 }

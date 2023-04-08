@@ -7,9 +7,10 @@ export const Button = ({
     appearance,
     arrow,
     children,
+    className,
     ...props
 }: ButtonProps): JSX.Element => {
-    const classes = cn(styles.button, {
+    const classes = cn(styles.button, className, {
         [styles.primary]: appearance === 'primary',
         [styles.ghost]: appearance === 'ghost',
     });

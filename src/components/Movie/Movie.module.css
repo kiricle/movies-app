@@ -1,0 +1,37 @@
+.movie {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    max-width: 900px;
+    margin-bottom: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.info {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.rating {
+    margin-bottom: 30px;
+}
+
+.overview {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.btn {
+    margin-top: auto;
+    margin-left: auto;
+    justify-self: end;
+    width: max-content;
+}

@@ -10,8 +10,6 @@ export const Menu = () => {
     const { menu, setMenu } = useContext(AppContext);
     const router = useRouter();
 
-    console.log(router.asPath);
-
     return (
         <ol className={styles.menu}>
             {menu &&

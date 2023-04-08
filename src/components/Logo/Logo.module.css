@@ -1,0 +1,7 @@
+.logo {
+    transition: fill .3s;
+}
+
+.logo:hover {
+    fill: red;
+}
