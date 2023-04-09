@@ -18,9 +18,7 @@ const nextConfig = {
         ],
     },
     images: {
-        protocols: ['http', 'https'],
         domains: ['image.tmdb.org'],
-        // hostname: 'image.tmdb.org'
     }
 };
 

@@ -1,3 +1,4 @@
+import { Htag } from '@/components';
 import { Movie } from '@/components/Movie/Movie';
 import { MovieProps } from '@/components/Movie/Movie.props';
 import { AppContext } from '@/context/app.context';
@@ -6,6 +7,7 @@ import { withLayout } from '@/layout/Layout';
 import axios from 'axios';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 import { Noto_Sans } from 'next/font/google';
+import { useRouter } from 'next/router';
 import { ParsedUrlQuery } from 'querystring';
 import { useContext } from 'react';
 
@@ -16,14 +18,23 @@ const notoSans = Noto_Sans({
 
 function Movies({ menu, genre, movies }: GenresProps): JSX.Element {
     const { menu: currentMenu, setMenu } = useContext(AppContext);
+    const router = useRouter();
 
     if (!currentMenu && menu && setMenu) {
         setMenu(menu);
     }
 
+    if (router.isFallback) {
+        return (
+            <>
+                <Htag tag='h2'>Loading...</Htag>
+            </>
+        );
+    }
+
     return (
         <>
-            {movies && movies.map((m) => (
+            {movies.map((m) => (
                 <Movie
                     key={m.id}
                     id={m.id}
@@ -50,7 +61,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     });
 
     return {
-        paths: menu.genres.map((m) => `/movies/${m.name.toLowerCase()}}`),
+        paths: menu.genres.map((m) => `/movies/${m.name.toLowerCase()}`),
         fallback: true,
     };
 };
@@ -84,7 +95,7 @@ export const getStaticProps: GetStaticProps<GenresProps> = async ({
         {
             params: {
                 api_key: process.env.NEXT_PUBLIC_API_KEY,
-                with_genres: genre.id,
+                with_genres: genre.id,   
             },
         }
     );
@@ -93,8 +104,7 @@ export const getStaticProps: GetStaticProps<GenresProps> = async ({
         return {
             notFound: true,
         };
-    
-    
+
     return {
         props: {
             menu,
