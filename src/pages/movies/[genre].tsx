@@ -3,6 +3,7 @@ import { Movie } from '@/components/Movie/Movie';
 import { MovieProps } from '@/components/Movie/Movie.props';
 import { AppContext } from '@/context/app.context';
 import { Genre, GenreList } from '@/interfaces/menu.interface';
+import { MoviesFetch } from '@/interfaces/MoviesFetch.interface';
 import { withLayout } from '@/layout/Layout';
 import axios from 'axios';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
@@ -113,10 +114,6 @@ export const getStaticProps: GetStaticProps<GenresProps> = async ({
         },
     };
 };
-
-interface MoviesFetch {
-    results: MovieProps[];
-}
 
 interface GenresProps extends Record<string, unknown> {
     menu: GenreList;
