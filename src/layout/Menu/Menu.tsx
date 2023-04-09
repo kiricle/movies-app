@@ -22,9 +22,9 @@ export const Menu = () => {
                             className={cn(styles.menu__link, {
                                 [styles.menu__link_active]:
                                     decodeURIComponent(router.asPath) ===
-                                    `/movies/${m.name.toLowerCase()}`,
+                                    `/genres/${m.name.toLowerCase()}`,
                             })}
-                            href={`/movies/${m.name.toLowerCase()}`}
+                            href={`/genres/${m.name.toLowerCase()}`}
                         >
                             {m.name}
                         </Link>

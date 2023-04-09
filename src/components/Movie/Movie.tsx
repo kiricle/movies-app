@@ -1,8 +1,8 @@
-import { MovieProps } from './Movie.props';
-import styles from './Movie.module.css';
+import { convertRatingIntoStars } from '@/utils/convertRatingIntoStars';
 import Image from 'next/image';
-import { Rating } from '../Rating/Rating';
 import { Button } from '../Button/Button';
+import styles from './Movie.module.css';
+import { MovieProps } from './Movie.props';
 
 export const Movie = ({
     id,
@@ -13,12 +13,6 @@ export const Movie = ({
     overview,
 }: MovieProps): JSX.Element => {
     const poster = `https://image.tmdb.org/t/p/original/${poster_path}`;
-
-    const convertRatingIntoStars = (rating: number): JSX.Element => {
-        const stars = Math.round(rating / 2);
-
-        return <Rating rating={stars} />;
-    };
 
     function truncateOverview(overview: string): string {
         return overview.length < 500

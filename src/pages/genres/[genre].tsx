@@ -17,7 +17,7 @@ const notoSans = Noto_Sans({
     subsets: ['latin'],
 });
 
-function Movies({ menu, genre, movies }: GenresProps): JSX.Element {
+function MoviesList({ menu, genre, movies }: GenresProps): JSX.Element {
     const { menu: currentMenu, setMenu } = useContext(AppContext);
     const router = useRouter();
 
@@ -35,6 +35,7 @@ function Movies({ menu, genre, movies }: GenresProps): JSX.Element {
 
     return (
         <>
+            <Htag tag='h1'>{`Latest ${genre.name.toLocaleLowerCase()    } movies`}</Htag>
             {movies.map((m) => (
                 <Movie
                     key={m.id}
@@ -50,7 +51,7 @@ function Movies({ menu, genre, movies }: GenresProps): JSX.Element {
     );
 }
 
-export default withLayout(Movies);
+export default withLayout(MoviesList);
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const url = new URL(process.env.NEXT_PUBLIC_DOMAIN + '/genre/movie/list');
@@ -62,7 +63,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     });
 
     return {
-        paths: menu.genres.map((m) => `/movies/${m.name.toLowerCase()}`),
+        paths: menu.genres.map((m) => `/genres/${m.name.toLowerCase()}`),
         fallback: true,
     };
 };
