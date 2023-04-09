@@ -20,6 +20,12 @@ export const Movie = ({
         return <Rating rating={stars} />;
     };
 
+    function truncateOverview(overview: string): string {
+        return overview.length < 500
+            ? overview
+            : `${overview.substring(0, 500).trim()}...`;
+    }
+
     return (
         <>
             <section className={styles.movie}>
@@ -37,8 +43,15 @@ export const Movie = ({
                     <div className={styles.rating}>
                         {convertRatingIntoStars(vote_average)}
                     </div>
-                    <p className={styles.overview}>{overview}</p>
-                    <Button appearance="primary" className={styles.btn}>Learn more</Button>
+                    <p className={styles.overview}>
+                        {truncateOverview(overview)}
+                    </p>
+                    <Button
+                        appearance="primary"
+                        className={styles.btn}
+                    >
+                        Learn more
+                    </Button>
                 </div>
             </section>
         </>

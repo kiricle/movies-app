@@ -27,7 +27,7 @@ function Home({ menu, topRatedMovies }: HomeProps): JSX.Element {
 
     return (
         <>
-            <Htag tag='h1'>Top Rated Movies</Htag>
+            <Htag tag="h1">Top Rated Movies</Htag>
             {topRatedMovies.map((movie) => (
                 <Movie
                     key={movie.id}
