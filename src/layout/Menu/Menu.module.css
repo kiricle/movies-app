@@ -29,7 +29,6 @@
 
 .menu__item:hover {
     background-color: var(--sidebar-color-hover);
-    cursor: pointer;
 }
 
 .menu__link {

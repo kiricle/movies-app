@@ -1,5 +1,6 @@
 import { convertRatingIntoStars } from '@/utils/convertRatingIntoStars';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Button } from '../Button/Button';
 import styles from './Movie.module.css';
 import { MovieProps } from './Movie.props';
@@ -40,12 +41,12 @@ export const Movie = ({
                     <p className={styles.overview}>
                         {truncateOverview(overview)}
                     </p>
-                    <Button
-                        appearance="primary"
-                        className={styles.btn}
+                    <Link
+                        className={styles.link}
+                        href={`/movies/${id}`}
                     >
                         Learn more
-                    </Button>
+                    </Link>
                 </div>
             </section>
         </>

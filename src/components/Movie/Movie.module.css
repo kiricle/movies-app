@@ -29,9 +29,21 @@
     line-height: 1.5;
 }
 
-.btn {
+.link {
     margin-top: auto;
     margin-left: auto;
     justify-self: end;
     width: max-content;
+    border-radius: 5px;
+    padding: 15px 20px;
+
+    text-decoration: none;
+    color: var(--white);
+    display: block;
+    background-color: var(--primary);
+    transition: background-color 0.3s ease-in-out;
+}
+
+.link:hover {
+    background-color: var(--primary-hover);
 }
