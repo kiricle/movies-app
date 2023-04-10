@@ -52,6 +52,8 @@ export const SearchBar = ({ ...props }: SearchBarProps): JSX.Element => {
 
             return () => clearTimeout(timer);
         }
+
+        setSearchResults(() => ({ results: [] }));
     }, [value]);
 
     return (
