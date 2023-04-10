@@ -1,3 +1,4 @@
+import { baseImageURL } from '@/utils/baseImageURL';
 import { convertRatingIntoStars } from '@/utils/convertRatingIntoStars';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -13,7 +14,7 @@ export const Movie = ({
     poster_path,
     overview,
 }: MovieProps): JSX.Element => {
-    const poster = `https://image.tmdb.org/t/p/original/${poster_path}`;
+    const poster = `${baseImageURL}${poster_path}`;
 
     function truncateOverview(overview: string): string {
         return overview.length < 500
